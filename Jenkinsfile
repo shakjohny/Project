@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    registry = "sanjeevkumarrao/docker-nodejs"
-    registryCredential = 'dockerhub'
+    dockerRegistry = "sanjeevkumarrao/docker-nodejs"
+    dockerRegistryCredential = 'dockerhub'
     dockerImage = ''
   }
   agent any
@@ -25,14 +25,14 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build dockerRegistry + ":$BUILD_NUMBER"
         }
       }
     }
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry( '', dockerRegistryCredential ) {
             dockerImage.push()
           }
         }
@@ -40,7 +40,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi $dockerRegistry:$BUILD_NUMBER"
       }
     }
   }
