@@ -48,5 +48,8 @@ pipeline {
    stage('Run Docker Image') {
       steps{
         sh "docker run -d --name demo -p 3000:3000 -v $(pwd):/root alekha/demo:$BUILD_NUMBER"
+      }
+   }
+      
   }
  }
