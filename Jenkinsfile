@@ -5,7 +5,7 @@ pipeline {
     dockerImage = ''
   }
   agent any
-  tools {nodejs "node-build" }
+  tools {nodejs}
   stages {
     stage('Cloning Git') {
       steps {
