@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    dockerRegistry = "sanjeevkumarrao/docker-nodejs"
+    dockerRegistry = "alekha/demo"
     dockerRegistryCredential = 'dockerhub'
     dockerImage = ''
   }
@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Cloning Git') {
       steps {
-        git 'https://github.com/sanjeevkumarrao/node-hello-world'
+        git 'https://github.com/alekha369/NodeJS'
       }
     }
     stage('Build') {
