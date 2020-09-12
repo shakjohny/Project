@@ -51,7 +51,7 @@ pipeline {
 //        docker run -d --name demo -p 3000:3000 -v $(pwd):/root alekha/demo:$BUILD_NUMBER
 //      }
 //      }
-//   }
+// close   }
       
   }
  }
