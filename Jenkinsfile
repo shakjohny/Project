@@ -45,13 +45,15 @@ pipeline {
         sh "docker rmi $dockerRegistry:$BUILD_NUMBER"
       }
     }
-//    stage('Run Docker Image') {
-//      steps{
-//        scripts {
-//        docker run -d --name demo -p 3000:3000 -v $(pwd):/root alekha/demo:$BUILD_NUMBER
-//      }
-//      }
-// close   }
+    
+      stage ('Deploy') {
+           steps {
+               script{
+                   def image_id = registry + ":$BUILD_NUMBER"
+                   sh "ansible-playbook  playbook.yml --extra-vars \"image_id=${image_id}\""
+               }
+           }
+       }
       
   }
  }
